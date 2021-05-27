@@ -1,8 +1,8 @@
 import socket
 
 
-SERVER_IP = '0.0.0.0'
-SERVER_PORT = 5005
+SERVER_IP = '192.168.10.101'
+SERVER_PORT = 5001
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
