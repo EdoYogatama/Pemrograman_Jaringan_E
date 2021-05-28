@@ -12,6 +12,7 @@ sock.setsockopt(socket.SOL_SOCKET,socket.SO_BROADCAST, 1)
 
 angka = 0
 while True:
+    time.sleep(2)
     angka = angka+1
     msg = " BROADCAST ini angka {} " . format(angka)
     print(msg)
