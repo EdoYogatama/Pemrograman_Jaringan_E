@@ -13,11 +13,11 @@ class UDP:
 
     def get_file_list(self):
         paths = dict()
-        paths['file1']='file1.txt'
-        paths['file2']='file2.txt'
-        paths['file3']='file3.txt'
-        paths['file4']='file4.txt'
-        paths['file5']='file5.txt'
+        paths['file1']='Data/file1.txt'
+        paths['file2']='Data/file2.txt'
+        paths['file3']='Data/file3.txt'
+        paths['file4']='Data/file4.txt'
+        paths['file5']='Data/file5.txt'
 
         return paths
 
