@@ -7,15 +7,39 @@ import datetime
 
 def get_file_list():
     paths = dict()
-    paths['file1']='./file1.txt'
-    paths['file2']='./file2.txt'
-    paths['file3']='./file3.txt'
-    paths['file4']='./file4.txt'
-    paths['file5']='./file5.txt'
+    paths['file1']='file1.txt'
+    paths['file2']='file2.txt'
+    paths['file3']='file3.txt'
+    paths['file4']='file4.txt'
+    paths['file5']='file5.txt'
     return paths
 
 def copy_file(url, new_path):
+    start_time = datetime.datetime.now()
+    cwd = os.getcwd()
+    if url is None:
+        return False
     
+    filename = cwd + '/progjar3/concurrency/' + url
+    filename_copy = cwd + '/progjar3/concurrency/' + new_path + '/' + url[-9:-4] + '-copy.txt'
+
+    origin = open(filename, "r")
+    dest = open(filename_copy, "w")
+
+    time.sleep(2)
+
+    read = origin.readline()
+    while read:
+        dest.write(read)
+        read = origin.readline()
+    
+    origin.close()
+    dest.close()
+
+    process_time = datetime.datetime.now() - start_time
+
+    return process_time
+
 
 def download_gambar(url=None,tuliskefile=False):
     waktu_awal = datetime.datetime.now()
@@ -50,5 +74,7 @@ def download_gambar(url=None,tuliskefile=False):
 
 if __name__=='__main__':
     #check fungsi
-    k = download_gambar('https://asset.kompas.com/crops/qz_jJxyaZgGgboomdCEXsfbSpec=/0x0:998x665/740x500/data/photo/2020/03/01/5e5b52f4db896.jpg')
-    print(k)
+    # k = download_gambar('https://asset.kompas.com/crops/qz_jJxyaZgGgboomdCEXsfbSpec=/0x0:998x665/740x500/data/photo/2020/03/01/5e5b52f4db896.jpg')
+    # print(k)
+    time = copy_file('file5.txt', 'CopyDir')
+    print(time)
