@@ -12,6 +12,7 @@ class ChatClient:
         self.server_address = (TARGET_IP,TARGET_PORT)
         self.sock.connect(self.server_address)
         self.tokenid=""
+    
     def proses(self,cmdline):
         j=cmdline.split(" ")
         try:
@@ -32,6 +33,7 @@ class ChatClient:
                 return "*Maaf, command tidak benar"
         except IndexError:
                 return "-Maaf, command tidak benar"
+    
     def sendstring(self,string):
         try:
             self.sock.sendall(string.encode())
@@ -47,24 +49,29 @@ class ChatClient:
         except:
             self.sock.close()
             return { 'status' : 'ERROR', 'message' : 'Gagal'}
+    
     def login(self,username,password):
         string="auth {} {} \r\n" . format(username,password)
         result = self.sendstring(string)
         if result['status']=='OK':
             self.tokenid=result['tokenid']
-            return "username {} logged in, token {} " .format(username,self.tokenid)
-        else:
-            return "Error, {}" . format(result['message'])
+            # return "username {} logged in, token {} " .format(username,self.tokenid)
+        # else:
+            # return "Error, {}" . format(result['message'])
+        return result
+    
     def sendmessage(self,usernameto="xxx",message="xxx"):
         if (self.tokenid==""):
             return "Error, not authorized"
         string="send {} {} {} \r\n" . format(self.tokenid,usernameto,message)
         print(string)
         result = self.sendstring(string)
-        if result['status']=='OK':
-            return "message sent to {}" . format(usernameto)
-        else:
-            return "Error, {}" . format(result['message'])
+        # if result['status']=='OK':
+        #     return "message sent to {}" . format(usernameto)
+        # else:
+        #     return "Error, {}" . format(result['message'])
+        return result
+
     def inbox(self):
         if (self.tokenid==""):
             return "Error, not authorized"
